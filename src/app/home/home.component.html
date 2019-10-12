@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <h4>List of rooms at ICT Department</h4>
+  </div>
+  <div class="row">
+      <div class="card-deck">
+        <div class="card" *ngFor="let room of rooms">
+          <img src="{{room.pic}}" class="card-img-top" alt="room pic" height="200">
+          <div class="card-body">
+            <h5 class="card-title">Room {{room.roomID}}</h5>
+            <p class="card-text">{{room.description}}</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

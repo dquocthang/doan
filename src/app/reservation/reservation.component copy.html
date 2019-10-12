@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- DatePicker -->
+        <div class="col">
+            <div class="text-center">
+                <h4>pick a day...</h4>
+                <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+                <bs-datepicker-inline [bsValue]="bsInlineValue" (bsValueChange)="onValueChange($event)" bsDatepicker
+                    [minDate]="minDate" [maxDate]="maxDate">
+                </bs-datepicker-inline>
+            </div>
+        </div>
+        <!-- Time Table -->
+        <div class="col-8">
+            <h4 class="text-center">{{data | date:'fullDate'}}</h4>
+            <table id="timetable" class="table table-bordered">
+                <tr>
+                    <th>Time</th>
+
+                    <th *ngFor="let timeslot of timeslots">{{timeslot}}</th>
+                </tr>
+                <tr *ngFor="let room of rooms">
+                    <th>{{room}}</th>
+                    <!-- <td *ngFor="let timeslot of timeslots; let i = index"
+                        title="Room {{room}}, {{timeslots[i]}} to {{timeslots[i+1]}}, {{data | date:'fullDate'}}">
+                        <div id="{{room}}{{timeslot}}">{{room[timeslot]}}</div>
+                    </td> -->
+                    <td title="Room {{room}}, {{data | date:'fullDate'}}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Rules -->
+        <div class="col">
+            <p><strong>Please note:</strong></p>
+
+            <ul>
+                <li>Rooms are for use by groups of 2 or more people</li>
+                <li>Bookings can be made up to 2 weeks in advance</li>
+                <li>If you are 15 minutes late, other clients may use the room</li>
+                <li>Keep noise to a minimum</li>
+                <li>Do not leave valuables unattended.</li>
+                <li>Leave the room promptly and in a tidy condition</li>
+                <li>Library staff may cancel bookings that do not honour these conditions</li>
+            </ul>
+
+            <p>
+                <strong>Please contact the ICT staff on 000-000-0000 or staff@ict.psu.ac.th for
+                    any
+                    issues
+                </strong>
+            </p>
+        </div>
+        <div class="col-8">
+            <!-- form starts -->
+            <form novalidate [formGroup]="booking" (ngSubmit)="onSubmit()">
+                <legend><strong>Booking Details</strong></legend>
+                <p *ngFor="let selectedCell of selectedCells">{{selectedCell}}</p>
+                <fieldset>
+                    <!-- <div>
+                        <input type="text" class="form-control" formControlName="rid" value="">
+                    </div> -->
+                    <div class="form-group">
+                        <legend><strong>Occupant's Information</strong></legend>
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" formControlName="userName">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Phone Number</label>
+                        <input type="text" class="form-control" formControlName="tel">
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <!-- form ends -->
+        </div>
+    </div>
+</div>
